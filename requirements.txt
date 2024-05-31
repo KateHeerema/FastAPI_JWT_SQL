@@ -1,0 +1,9 @@
+SQLAlchemy
+fastapi
+uvicorn
+python-jose[cryptography]
+# passlib[bcrypt]  #bcrypt needs 4.0.1 for now (bug: https://github.com/langflow-ai/langflow/issues/1173)
+passlib
+bcrypt == 4.0.1
+python-multipart
+
