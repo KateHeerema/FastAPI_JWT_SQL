@@ -1,9 +1,8 @@
-import datetime
-from typing import List
+
 from ..database import SQLAlchemyBase
 
 # used to contain "Column", not replaced for mapped_column for better type hinting.
-from sqlalchemy import ForeignKey, Integer, DateTime, Boolean, LargeBinary, String
+from sqlalchemy import Integer, LargeBinary, String
 from sqlalchemy.orm import mapped_column, Mapped
 import sqlalchemy.orm as orm
 

@@ -9,7 +9,8 @@ class RefreshTokens(SQLAlchemyBase):
     __tablename__ = "refreshtokens"
 
     id: Mapped[str] = mapped_column(String, primary_key=True)
-    refresh_token: Mapped[str]
+    username: Mapped[str] = mapped_column(String, unique=True)
+    refresh_token: Mapped[str] = mapped_column(String)
     created_on: Mapped[datetime.date] = mapped_column(
         DateTime, default=datetime.datetime.now)
 

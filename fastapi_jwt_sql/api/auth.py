@@ -152,6 +152,7 @@ def is_jti_blacklisted(db: db_dependency, jti) -> bool:
 
 # Salting makes the password stored unique by adding extra characters, even when different users have the same PW.
 # The salt does not need to be stored because it is part of the hash produced by bcrypt.hashpw()
+# TODO: catch the error when username is not unique.
 @auth_router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_user(db: db_dependency, create_user_request: CreateUserRequest):
     """ Creates a user entry, salts and hashes the password, sot
@@ -275,6 +276,9 @@ def get_active_user(token: Annotated[str, Depends(oauth2_bearer)]) -> dict[str, 
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate credentials. (2)")
         return {"username": username, "jti": jti, "exp": exp}
+    except ExpiredSignatureError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="You are logged out.")
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate user. (3)")

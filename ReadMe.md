@@ -69,7 +69,7 @@ Application Programming Interface (API). FastAPI is a backend application that d
 
 1. Uvicorn (web server)
 2. Starlette, ASGI framework. Handles routing, middleware, request/response flow. Allows for independent choices in ORM and database tools. 
-3. Pydantic. A Python data validation model. The "shape" of data is declared as a class.
+3. Pydantic. A Python data validation model. The "shape" of data is declared as a class. 
 
 ## Cool features / integrations
 
@@ -81,3 +81,16 @@ Application Programming Interface (API). FastAPI is a backend application that d
 3. Routers let you subdivide the code into separate scripts, whilst still only running one API instance.
 4. Use swagger (or postman) to test code, no need for frontend to be in place to test the API. Swagger is found at localhost URL generated when running the api: <<local_url/docs>>.  Postman is an app (and has more extensive, paid, possibilities).
 5. [fastapi-users](https://fastapi-users.github.io/fastapi-users/latest/) library.
+
+
+
+## TODOs
+
+1. Make all the DB calls async
+   1. Make the related fastapi code a co-routine (Async + Await)
+2. Add refresh tokens. (Perhaps wait for a fastapi update?)
+3. Automatically clean the JTI blacklist (ie clean up every entry that has expired at the end of a work day / once a week)
+4. update User model in Pydantic to have two separate classes (with/without pw)
+5. Store the token blacklist database in a Redis database: It will be faster. 
+6. store JWT (only refresh? both?) in a http-only cookie. (is this major refactoring for the auth JWT?)
+7. 
